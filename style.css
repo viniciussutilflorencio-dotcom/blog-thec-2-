@@ -1,0 +1,228 @@
+/* --- PALETA DE CORES NEON FUTURISTA (VERDE E CIANO) --- */
+:root {
+    --bg-color: #060911;
+    --card-bg: rgba(13, 22, 33, 0.75); /* Semi-transparente para ver as partículas */
+    --text-color: #e0f7fa;
+    --neon-cyan: #00f3ff;
+    --neon-green: #0ff0fc;
+    --neon-accent-green: #00ff88;
+    --neon-glow-cyan: rgba(0, 243, 255, 0.4);
+    --neon-glow-green: rgba(0, 255, 136, 0.4);
+}
+
+/* --- ESTILOS GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- CANVAS DAS PARTÍCULAS NO FUNDO --- */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Fica atrás de todo o conteúdo */
+    pointer-events: none; /* Permite clicar através do canvas se necessário */
+}
+
+/* --- BARRA DE PROGRESSO DE LEITURA --- */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-accent-green));
+    box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-accent-green);
+    z-index: 1000;
+    transition: width 0.1s linear;
+}
+
+/* --- CABEÇALHO E ANIMAÇÕES --- */
+header {
+    text-align: center;
+    margin: 40px 0;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 
+        0 0 5px var(--neon-cyan),
+        0 0 15px var(--neon-cyan),
+        0 0 30px var(--neon-cyan),
+        0 0 50px var(--neon-accent-green);
+    animation: neonGlow 2.5s infinite alternate;
+}
+
+p.subtitle {
+    font-size: 1.1rem;
+    color: var(--neon-accent-green);
+    margin-top: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 5px var(--neon-cyan), 0 0 15px var(--neon-cyan), 0 0 25px var(--neon-cyan);
+    }
+    100% {
+        text-shadow: 0 0 10px var(--neon-accent-green), 0 0 25px var(--neon-accent-green), 0 0 45px var(--neon-accent-green);
+    }
+}
+
+/* --- CONTAINER E ARTIGO --- */
+.container {
+    max-width: 800px;
+    width: 100%;
+}
+
+article {
+    background-color: var(--card-bg);
+    backdrop-filter: blur(8px); /* Efeito de vidro desfocado */
+    border: 2px solid var(--neon-cyan);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 0 20px var(--neon-glow-cyan);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 30px;
+}
+
+article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 35px var(--neon-accent-green);
+    border-color: var(--neon-accent-green);
+}
+
+h2 {
+    color: var(--neon-cyan);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.meta-info {
+    font-size: 0.85rem;
+    color: #8ab4f8;
+    margin-bottom: 20px;
+}
+
+article p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+/* --- SEÇÃO DO BOTÃO DE LIKE --- */
+.like-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.btn-like {
+    background: transparent;
+    border: 2px solid var(--neon-cyan);
+    color: #fff;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 10px var(--neon-glow-cyan);
+}
+
+.btn-like:hover {
+    background-color: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon-cyan);
+    transform: scale(1.05);
+}
+
+.btn-like:active {
+    transform: scale(0.95);
+}
+
+.like-count {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--neon-accent-green);
+}
+
+.heart-icon {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.btn-like:active .heart-icon {
+    transform: scale(1.5);
+}
+
+/* --- BOTÃO VOLTAR AO TOPO --- */
+#backToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 2px solid var(--neon-accent-green);
+    color: var(--neon-accent-green);
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px var(--neon-glow-green);
+    z-index: 100;
+}
+
+#backToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+#backToTopBtn:hover {
+    background-color: var(--neon-accent-green);
+    color: #000;
+    box-shadow: 0 0 25px var(--neon-accent-green);
+    transform: translateY(-4px);
+}
+
+/* --- RODAPÉ --- */
+footer {
+    margin-top: auto;
+    padding: 20px 0;
+    color: #5c788a;
+    font-size: 0.9rem;
+    text-align: center;
+}
